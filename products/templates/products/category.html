@@ -1,0 +1,46 @@
+{% extends "products/base.html" %}
+
+{% block content %}
+
+<h2>Category List</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Category</th>
+      <th scope="col">Category Slug</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for category in categories %}
+            <tr>
+            <th scope="row">{{category.id }}</th>
+            <td>{{ category.name }}</td>
+            <td>{{category.slug}}</td>
+            <td>
+              <form action="{% url 'category-delete' category.id %}" method="POST"  
+              onsubmit="return confirm('Are you sure you want to delete this category?');">
+              {% csrf_token %}
+                 <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+              </form>
+               
+            </td>
+            </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+
+<h2>Add New Category </h2>
+<form method="post" action="{% url 'categories-create' %}" >
+    {% csrf_token %}
+  <div class="mb-3">
+    <label for="category_name" class="form-label">Category Name</label>
+    <input type="text" class="form-control" id="product_name" name="category_name">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
+{% endblock content %}
