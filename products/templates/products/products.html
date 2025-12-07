@@ -9,8 +9,17 @@
   <thead>
     <tr>
       <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
+      <th scope="col">
+       
+      </th>
+
+      <th scope="col">Name </th>
+      <th scope="col">Price</th>
+      <th scope="col">Category</th>
+      <th scope="col">Stock Quantity</th>
+      <th scope="col">Is Available</th>
+
+
       <th scope="col">Handle</th>
     </tr>
   </thead>
@@ -19,8 +28,20 @@
     <tr>
       <th scope="row">{{ product.id }}</th>
       <td>{{ product.name }}</td>
+      {{ product.image }}
+      <td>
+        {% if product.image %}
+        <img src="{{ product.image.url }}" width="50" height="50" alt="" />
+        {% endif %} 
+      </td>
+
       <td>{{ product.price}}</td>
-      <td>@mdo</td>
+      <td>{{ product.category}}</td>
+      <td>{{ product.stock_quantity}}</td>
+      <td>{{ product.available}}</td>
+
+
+      <td>@mdo</td> 
       {% empty %}
       <div>
         <h2>There is no product right now </h2>
